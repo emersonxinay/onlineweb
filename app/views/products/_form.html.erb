@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :photo %>
-    <%= form.text_field :photo %>
+    <%= form.file_field :photo %>
   </div>
 
   <div class="field">
@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= form.label :category_id %>
-    <%= form.text_field :category_id %>
+    <%= form.collection_select :category_id, Category.order(:name),:id,:name %>
   </div>
 
   <div class="actions">
