@@ -1,0 +1,22 @@
+<%= form_with(model: state_order, local: true) do |form| %>
+  <% if state_order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(state_order.errors.count, "error") %> prohibited this state_order from being saved:</h2>
+
+      <ul>
+      <% state_order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
