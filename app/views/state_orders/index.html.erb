@@ -1,27 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class="m-5">
+  <p id="notice"><%= notice %></p>
 
-<h1>State Orders</h1>
+  <h1>State Orders</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @state_orders.each do |state_order| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= state_order.name %></td>
-        <td><%= link_to 'Show', state_order %></td>
-        <td><%= link_to 'Edit', edit_state_order_path(state_order) %></td>
-        <td><%= link_to 'Destroy', state_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @state_orders.each do |state_order| %>
+        <tr>
+          <td><%= state_order.name %></td>
+          <td><%= link_to 'Show', state_order %></td>
+          <td><%= link_to 'Edit', edit_state_order_path(state_order) %></td>
+          <td><%= link_to 'Destroy', state_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New State Order', new_state_order_path %>
+  <br>
+
+  <%= link_to 'New State Order', new_state_order_path %>
+</div>
