@@ -13,6 +13,7 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'devise'
 gem 'carrierwave'
+gem 'mini_magick'
 
 gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
