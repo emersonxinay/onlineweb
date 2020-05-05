@@ -1,36 +1,37 @@
-<div class="container-fluid mx-5">
-    <h1>Aqui estara los productos con carrito</h1>
+<head>
+    <%= render "slider" %>
+</head>
 
-    <form  action='<%= orders_path %>' name="forname" id="forname_order" method="post" >
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 
-      <div class="card-deck ">
-        <% @products.each do |product| %>
-        <div class="">
-          <div class="colcard border m-5" style="width: 15rem;">
-              <img class="card-img-top img-responsive center-block"  <%= link_to image_tag(product.photo.url(:thumb)), product if product.photo.present? %>
-              <div class="card-body border">
-                <h5 class="card-title"> <%= product.name %></h5>
-                <p class="card-text"><%= product.description %></p>
-              </div>
+<form  action='<%= orders_path %>' name="forname" id="forname_order" method="post" >
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+<div class="container">
 
-              <div class="card-body border">
-                <h3 class="card-text"><%= product.price %></h3>
-                  <input type="checkbox"  name="products[]" value="<%= product.id %>">
-                  <button class="btn btn-danger" type="submit" name="button" >Agregar a Carro</button>
-              </div>
+  <div class="row">
+    <% @products.each_slice(3) do |row| %>
+    <% row.each do |product| %>
+    <div class="col">
+      <div class="card">
+          <img class="card-img-top img-responsive center-block"  <%= link_to image_tag(product.photo.url(:thumb)), product if product.photo.present? %>
+          <div class="card-body">
+            <h5 class="card-title"> <%= product.name %></h5>
+            <p class="card-text"><%= product.description %></p>
           </div>
-        </div>
 
-        <% end %>
+          <div class="card-body">
+            <h3 class="card-text"><%= number_to_currency(product.price, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u") %></h3>
+              <input type="checkbox"  class="custom-checkbox" name="products[]" value="<%= product.id %>">
+              <label class="text-primary">Selecciona</label>
+          </div>
       </div>
-    </form>
+    </div>
+
+    <% end %>
+    <% end %>
+
+      <button class="btn btn-danger" type="submit" name="button" >Agregar a Carro</button>
+
+  </div>
 </div>
 
-
-
-
-<script>
-
-
-  </script>
+</form>

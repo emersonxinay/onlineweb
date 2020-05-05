@@ -17,6 +17,7 @@ class Ability
     #end
 
        user ||= User.new # guest user (not logged in)
+       #can :read, Local
        can :destroy, Product, user_id: user.id
       # if user.admin?
       #   can :manage, :all

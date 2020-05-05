@@ -1,0 +1,31 @@
+<table class="table table-sm">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Producto</th>
+      <th scope="col">cantidad</th>
+      <th scope="col">precio por Unidad</th>
+      <th scope="col">precio total</th>
+      <th scope="col"> </th>
+
+    </tr>
+  </thead>
+
+  <tbody >
+    <% @orders.each do |order| %>
+      <tr>
+
+        <td><%= order.product.name %></td>
+        <td><%= order.product.orders_count(current_user.id) %></td>
+        <td><%= number_to_currency(order.product.price, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u") %> </td>
+        <td><%=  %></td>
+        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+    <% end %>
+    <tr>
+      <td>total a pagar </td>
+      <td></td>
+      <td><%= number_to_currency(@orders.map{|order| order.product.price}.sum, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u") %></td>
+    </tr>
+  </tbody>
+</table>

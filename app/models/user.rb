@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
   has_many :orders
+  has_many :products, through: :orders
 
   def self.new_with_session(params, session)
   super.tap do |user|

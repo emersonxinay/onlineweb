@@ -20,8 +20,13 @@ gem 'jquery-rails'
 gem 'cancancan'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
+gem 'activeadmin'
+gem 'font-awesome-rails'
+gem 'font-awesome-sass', '~> 5.12.0'
+gem 'geocoder'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby

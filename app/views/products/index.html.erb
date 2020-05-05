@@ -1,9 +1,10 @@
-<div class=" table-responsive-auto m-5">
+<div class="product">
   <p id="notice"><%= notice %></p>
+
 
   <h1>Products</h1>
 
-  <table class="table table-sm">
+  <table class="table table-responsive-auto table-sm">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Name</th>
@@ -21,7 +22,7 @@
 
           <td><%= product.name %></td>
           <td><%= link_to image_tag(product.photo.url(:thumb)), product if product.photo.present? %></td>
-          <td><%= product.price %></td>
+          <td><%= number_to_currency(product.price,  unit: "CLP ", precision: 3, separator: ",", delimiter: ",")%></td>
           <td><%= product.description %></td>
           <td><%= product.category.name %></td>
           <td><%= link_to 'Show', product %></td>
@@ -31,9 +32,10 @@
       <% end %>
     </tbody>
   </table>
+  <%= number_to_currency(100) %>
+
 
   <br>
-
   <%= link_to 'New Product', new_product_path %>
 
 </div>

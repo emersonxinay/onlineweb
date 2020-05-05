@@ -2,21 +2,22 @@
 <html>
   <head>
     <title>Onlinehazuki</title>
+    <%= favicon_link_tag 'favicon.ico' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+      <%= render "partials/navbar" %>
+        
 
   </head>
 
 
   <body>
 
-    <%= render "partials/navbar" %>
+
+
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
     <% end %>
@@ -26,6 +27,12 @@
 
 
     <%= yield %>
+    <%= render "partials/footer" %>
 
   </body>
+
+
+
+
+
 </html>

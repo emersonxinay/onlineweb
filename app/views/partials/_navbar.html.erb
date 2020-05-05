@@ -7,6 +7,15 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav xl-auto ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="<%= carta_path %>">Carta</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= local_index_path%>">Locales</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= preguntas_path%>">Preguntas Frecuentes </a>
+      </li>
       <% if user_signed_in? %>
       <li class="nav-item ">
           <a class="nav-link" href="<%= categories_path %>">Categoria y Productos</a></li>

@@ -1,0 +1,92 @@
+:::::::::::::::app/views/home/index.html.erb::::::::::
+
+
+<form  action='<%= orders_path %>' name="forname" id="forname_order" method="post" >
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+  <div class="card-deck ">
+    <% @products.each do |product| %>
+    <div class="">
+      <div class="colcard border m-5" style="width: 15rem;">
+          <img class="card-img-top img-responsive center-block"  <%= link_to image_tag(product.photo.url(:thumb)), product if product.photo.present? %>
+          <div class="card-body border">
+            <h5 class="card-title"> <%= product.name %></h5>
+            <p class="card-text"><%= product.description %></p>
+          </div>
+
+          <div class="card-body border">
+            <h3 class="card-text"><%= number_to_currency(product.price, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u") %></h3>
+              <input type="checkbox"  name="products[]" value="<%= product.id %>">
+          </div>
+      </div>
+    </div>
+
+    <% end %>
+
+      <button class="btn btn-danger" type="submit" name="button" >Agregar a Carro</button>
+
+
+  </div>
+</form>
+::::::::::: app/controllers/orders_controllers.rb :::::::::::::::::::::::
+
+def create
+
+  params[:products].each do |product_id|
+    Order.create(:user => current_user, :product => Product.find(product_id), :state_order_id => 1, :delivery_date => Date.today )
+    end
+      redirect_to orders_path
+
+
+end
+
+:::::::::::::::::::::::::::::::::::
+
+::::::::::::::::segunda opcion app/views/home/index.html.erb:::::::::::::::
+
+<div class="container">
+  <div class="row">
+    <% @products.each_slice(4) do |row| %>
+      <% row.each do |product| %>
+        <div class="col">
+          <div class="card">
+            <img class="card-img-top img-responsive " <%= link_to image_tag(product.photo.url(:thumb)), product if product.photo.present? %>
+            <div class="body">
+              <div class="card-body">
+                  <h5> <%= product.name %> </h5>
+              </div>
+              <div class="card-body">
+                  <p> <%= product.description %> </p>
+              </div>
+              <div class="card-body">
+                <p><%= number_to_currency(product.price, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u") %></p>
+              </div>
+              <div class="card-body">
+                    <input type="checkbox"  name="products[]" value="<%= product.id %>">
+                    <%=link_to "comprar", product_orders_path(product), class: 'btn btn-success', method: :post %>
+              </div>
+            </div>
+          </div>
+        </div>
+       <% end %>
+      <% end %>
+    </div>
+      <button class="btn btn-danger" type="submit" name="button" >Agregar a Carro</button>
+
+</div>
+
+
+::::::::::::::::::segunda opcion decontroller orders_controllers.rb :::::::::::::::
+
+  def create
+
+      @product = Product.find(params[:product_id])
+      @order =Order.new(product: @product, user: current_user)
+      if @order.save
+        redirect_to home_index_path, notice: "La orden se agrego exitosamente"
+      else
+        redirect_to home_index_path, alert: "la order no se agrego"
+
+      end
+
+  end
