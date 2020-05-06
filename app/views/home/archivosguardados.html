@@ -90,3 +90,124 @@ end
       end
 
   end
+
+
+::::::::::: archivo de controller/orders_controllers.rb ::::::::::::::::::::::
+
+
+    def create
+
+      params[:products].each do |product_id|
+        Order.create(:user => current_user, :product => Product.find(product_id), :state_order_id => 1, :delivery_date => Date.today )
+        end
+          redirect_to orders_path
+    end
+
+  def index
+    #@orders =Order.where(user: current_user)
+    #products_id = Order.select(:id).distinct.pluck(:product_id)
+    products_id = current_user.orders.select(:id).distinct.pluck(:product_id)
+    orders_id = []
+    products_id.each do |pp|
+      orders_id.push( Product.find(pp).orders.where(user: current_user).last.id )
+    end
+
+    @orders = Order.where(user: current_user).where(id: orders_id)
+
+
+  end
+
+  def destroy
+    @order.destroy
+    respond_to do |format|
+      format.html { redirect_to orders_path, notice: 'Product was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def show
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_order
+      @order = Order.find(params[:id])
+    end
+
+
+    :::::::::::::::::::::::::::::::::orders/index.html.erb antes de hacer paypal ::::::::::::
+
+    <table class="table table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Producto</th>
+          <th scope="col">cantidad</th>
+          <th scope="col">precio por Unidad</th>
+          <th scope="col"> </th>
+
+        </tr>
+      </thead>
+
+      <tbody >
+        <% @orders.each do |order| %>
+          <tr>
+
+            <td><%= order.product.name %></td>
+            <td><%= order.product.orders_count(current_user.id) %></td>
+            <td><%= number_to_currency(order.product.price, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u") %> </td>
+            <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+          </tr>
+        <% end %>
+        <tr>
+          <td>total a pagar </td>
+          <td></td>
+          <td><%= number_to_currency(@orders.map{|order| order.product.price}.sum, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u") %></td>
+
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to 'Confirmar compra', pre_pay_billings_path, class: 'btn btn-success float-right'  %>
+
+:::::::::::::::::::::::::::::..aplication_controller hecho con profe :::::::::::::::::::::::::......::.:::::::
+
+
+class ApplicationController < ActionController::Base
+    protect_from_forgery with: :exception
+    check_authorization :unless => :devise_controller?
+    skip_authorization_check :only => [:new, :create]
+    rescue_from CanCan::AccessDenied do |exception|
+        respond_to do |format|
+            format.html { redirect_to root_url, alert: exception.message }
+        end
+    end
+end
+
+
+
+::::::::::::::::::::::::::::::::::::::::::url de imgagen de products/index.html.erb ::::::::::::::
+
+
+<td><%= link_to image_tag(product.photo.url(:thumb)), product if product.photo.present? %></td>
+
+<td><%= link_to 'Show', product %></td>
+
+
+::::::::::::::::::::::::::::::::::::::::::url de imgagen de home/index.html.erb ::::::::::::::
+  <img class="card-img-top img-responsive center-block"  <%= link_to image_tag(product.photo.url(:thumb)), product if product.photo.present? %>
+
+::::::::::::::::::::::codigo de profe de models/ability.rb ::::::::::::::::
+  class Ability 
+
+  include CanCan::Ability  
+    def initialize(user) 
+      user ||= User.new # guest user (not logged in) 
+      if user.admin? 
+        can :manage, :all 
+      else 
+        #can [:show], Post 
+        #can [:read, :create], Comment 
+        can [:read, :show], Carta
+      end 
+    end 
+  end 

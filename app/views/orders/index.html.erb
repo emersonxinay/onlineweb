@@ -1,31 +1,41 @@
-<table class="table table-sm">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Producto</th>
-      <th scope="col">cantidad</th>
-      <th scope="col">precio por Unidad</th>
-      <th scope="col">precio total</th>
-      <th scope="col"> </th>
+<div class="separator">
 
-    </tr>
-  </thead>
-
-  <tbody >
-    <% @orders.each do |order| %>
+</div>
+<div class="container-fluid">
+  <table class="table table-sm">
+    <thead class="thead-dark">
       <tr>
-
-        <td><%= order.product.name %></td>
-        <td><%= order.product.orders_count(current_user.id) %></td>
-        <td><%= number_to_currency(order.product.price, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u") %> </td>
-        <td><%=  %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th scope="col">Producto</th>
+        <th scope="col">cantidad</th>
+        <th scope="col">precio por Unidad</th>
+        <th scope="col">subtotal</th>
+        <th scope="col"> </th>
 
       </tr>
-    <% end %>
-    <tr>
-      <td>total a pagar </td>
-      <td></td>
-      <td><%= number_to_currency(@orders.map{|order| order.product.price}.sum, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u") %></td>
-    </tr>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody >
+      <% @orders.each do |order| %>
+        <tr>
+
+          <td><%= order.product.name %></td>
+          <td><%= order.product.orders_count(current_user.id) %></td>
+          <td><%= number_to_currency(order.product.price, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %> </td>
+          <td><%= number_to_currency((order.product.orders_count(current_user.id) *  order.product.price), unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %> </td>
+          <td> <%= link_to 'disminuir', order, method: :delete, data: { confirm: 'desea restar un producto?' } %><i class="fa fa-caret-square-down"></i></td>
+
+        </tr>
+      <% end %>
+      <tr  class="bg bg-danger">
+        <td>total a pagar </td>
+        <td></td>
+        <td></td>
+        <td colspan="3"><%= number_to_currency(current_user.orders.map{|order| order.product.price}.sum, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %></td>
+
+      </tr>
+    </tbody>
+  </table>
+
+<%= link_to 'Limpiar carro', clean_orders_path, class: 'btn btn-outline-danger'  %>
+<%= link_to 'Confirmar compra', pre_pay_billings_path, class: 'btn btn-success float-right'  %>
+</div>

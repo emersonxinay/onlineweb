@@ -8,7 +8,7 @@
 <div class="container">
 
   <div class="row">
-    <% @products.each_slice(3) do |row| %>
+    <% @products.each_slice(4) do |row| %>
     <% row.each do |product| %>
     <div class="col">
       <div class="card">
@@ -19,7 +19,7 @@
           </div>
 
           <div class="card-body">
-            <h3 class="card-text"><%= number_to_currency(product.price, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u") %></h3>
+            <h3 class="card-text"><%= number_to_currency(product.price, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %></h3>
               <input type="checkbox"  class="custom-checkbox" name="products[]" value="<%= product.id %>">
               <label class="text-primary">Selecciona</label>
           </div>
