@@ -8,21 +8,19 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-      <%= render "partials/navbar" %>
-        
+
+    <%= render "partials/navbar" %>
 
   </head>
 
 
   <body>
 
-
-
     <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
+    <p class="alert alert-success"><%= notice %></p>
     <% end %>
     <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
+    <p class="alert alert-danger"><%= alert %></p>
     <% end %>
 
 
@@ -30,9 +28,5 @@
     <%= render "partials/footer" %>
 
   </body>
-
-
-
-
 
 </html>
