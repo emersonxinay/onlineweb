@@ -34,7 +34,7 @@ class BillingsController < ApplicationController
       o.save
     end
 
-    redirect_to payment_success_path(@billing.code)
+    redirect_to historial_orders_path(@billing.code)
     # render plain: ":)"
 
   else

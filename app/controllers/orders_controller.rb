@@ -19,7 +19,14 @@ class OrdersController < ApplicationController
       products_id.each do |pp|
         orders_id.push( Product.find(pp).orders.where(user: current_user).last.id )
       end
-      @orders = Order.where(user: current_user).where(id: orders_id)
+      @orders = Order.where(user: current_user).where(id: orders_id).where(payed: false)
+
+    end
+
+    def historial
+      products_id = current_user.orders.select(:id).distinct.pluck(:product_id)
+
+      @orders = Order.where(user: current_user).where(payed: true)
     end
 
     def destroy

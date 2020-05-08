@@ -19,9 +19,9 @@
         <tr>
 
           <td><%= order.product.name %></td>
-          <td><%= order.product.orders_count(current_user.id) %></td>
+          <td><%= order.product.orders_count(current_user.id, false) %></td>
           <td><%= number_to_currency(order.product.price, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %> </td>
-          <td><%= number_to_currency((order.product.orders_count(current_user.id) *  order.product.price), unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %> </td>
+          <td><%= number_to_currency((order.product.orders_count(current_user.id, false) *  order.product.price), unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %> </td>
           <td> <%= link_to 'disminuir', order, method: :delete, data: { confirm: 'desea restar un producto?' } %><i class="fa fa-caret-square-down"></i></td>
 
         </tr>
@@ -30,7 +30,7 @@
         <td>total a pagar </td>
         <td></td>
         <td></td>
-        <td colspan="3"><%= number_to_currency(current_user.orders.map{|order| order.product.price}.sum, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %></td>
+        <td colspan="3"><%= number_to_currency(@orders.map{|order| (order.product.price * order.product.orders_count(current_user.id, false))}.sum, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %></td>
 
       </tr>
     </tbody>
