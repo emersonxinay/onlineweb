@@ -27,6 +27,9 @@ gem 'font-awesome-sass', '~> 5.12.0'
 gem 'geocoder'
 gem 'rails-erd', group: :development
 gem 'paypal-sdk-rest'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 

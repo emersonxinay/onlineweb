@@ -46,9 +46,10 @@
     }
 /* ::::::::::::::::::css de google maps:::::::::::::::::::::::::::::::::::::*/
 #map {
-  height: 100%;
+  height: 500px;
   width: 100%;
-  position: relative;
+  margin-left: inherit;
+  position: absolute;
 }
 /* Optional: Makes the sample page fill the window. */
 
@@ -69,12 +70,13 @@ table {
   left: 0;
   position: absolute;
   top: 15;
-  width: 440px;
+  width: 500px;
   z-index: 1;
 }
 #mapa {
-  margin-top: 40px;
-  width: 440px;
+  height: 100px;
+  width: 100%;
+  left: auto;
 }
 #listing {
   position: absolute;
@@ -134,12 +136,9 @@ table {
 .iw_table_icon {
   text-align: right;
 }
-#mapa {
-  margin: 5;
 
-}
 
-/* :::::: carouse para poner el texto encima de la imagen slider :::::::::::::: */
+/* :::::: carousel para poner el texto encima de la imagen slider :::::::::::::: */
 
 .carousel-content {
      position: absolute;
@@ -167,5 +166,12 @@ table {
   height: 200px;
   object-fit: cover;
   width: 100%;
+}
 
+/* tamaño de pantalla con jquery */
+
+@media (min-width: 768px){
+  #carouselinicio{
+    clear: inherit;
+  }
 }

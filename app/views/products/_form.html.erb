@@ -1,42 +1,55 @@
-<%= form_with(model: product, local: true) do |form| %>
-  <% if product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
 
-      <ul>
-      <% product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <%= form_with(model: product, local: true) do |form| %>
+        <% if product.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+            <ul>
+            <% product.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field form-group">
+
+          <%= form.label :name %>
+          <%= form.text_field :name, class: "form-control", type: "text", id: "exampleInputEmail1" %>
+        </div>
+
+        <div class="field form-group">
+          <%= form.label :photo  %>
+          <%= form.file_field :photo %>
+        </div>
+
+        <div class="field form-group">
+          <%= form.label :price %>
+          <%= form.text_field :price, class: "form-control", type: "text" %>
+        </div>
+
+        <div class="field form-group">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: "form-control", type: "textarea" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :category_id %>
+          <%= form.collection_select :category_id, Category.order(:name),:id,:name %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit %>
+        </div>
       <% end %>
-      </ul>
+
+        <div class="m-5">
+          <%= link_to 'Ver', @product, class: "btn btn-info" %>
+          <%= link_to 'Atras', products_path, class: "btn btn-danger" %>
+        </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
   </div>
-
-  <div class="field">
-    <%= form.label :photo %>
-    <%= form.file_field :photo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category_id %>
-    <%= form.collection_select :category_id, Category.order(:name),:id,:name %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg   navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg   navbar-dark bg-dark ">
   <a class="navbar-brand " href=" <%= home_index_path %> "> HAZUKI ONLINE <i class="fa fa-home"></i></a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,10 +11,10 @@
         <a class="nav-link" href="<%= carta_path %>">Carta</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<%= local_index_path%>">Locales</a>
+        <a class="nav-link" href="<%= local_index_path%>">Locales <i class="fa fa-map-marker"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<%= preguntas_path%>">Preguntas Frecuentes </a>
+        <a class="nav-link" href="<%= preguntas_path%>">Preguntas Frecuentes <i class="fa fa-question-circle"></i></a>
       </li>
       <% if user_signed_in? %>
       <li class="nav-item ">
@@ -24,14 +24,14 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="<%= orders_path %>">Mi Carro <i class="fa fa-shopping-cart"></i></a>
+        <a class="nav-link" href="<%= orders_path %>">Mi Carro <i class="fa fa-shopping-cart fa-lg" style="color:#FF0000; width:6; height:6;"></i></a>
       </li>
 
       <li class="nav-item">
               <a class="nav-link nav-dange"><%= current_user.name %></a>
             </li>
       <li class="nav-item ">
-          <%= link_to 'Salir', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+          <%= link_to 'Salir', destroy_user_session_path, method: :delete, class: 'nav-link fa fa-power-off fa-lg'  %>
       </li>
 
     </ul>

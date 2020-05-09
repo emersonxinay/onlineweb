@@ -12,6 +12,12 @@ class OrdersController < ApplicationController
     end
 
     def index
+      @orders = Order.all
+      respond_to do |format|
+        format.html
+        format.json
+        format.pdf {render template: 'orders/detalle', pdf: 'detalle'}
+      end
       #@orders =Order.where(user: current_user)
       #products_id = Order.select(:id).distinct.pluck(:product_id)
       products_id = current_user.orders.select(:id).distinct.pluck(:product_id)
@@ -20,6 +26,9 @@ class OrdersController < ApplicationController
         orders_id.push( Product.find(pp).orders.where(user: current_user).last.id )
       end
       @orders = Order.where(user: current_user).where(id: orders_id).where(payed: false)
+
+    end
+    def detalle
 
     end
 

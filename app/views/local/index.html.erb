@@ -1,29 +1,43 @@
 <div class="container-fluid">
 
 </div>
-    <div class="hotel-search bg-danger">
-      <div id="findhotels">
-        Ubica Nuestros Locales:
-      </div>
+<div class="container">
+  <div class="row">
 
-      <div id="locationField">
-        <input id="autocomplete" placeholder="Enter a city" type="text" />
-      </div>
 
-      <div id="controls">
-        <select id="country">
-          <option  value="all">Locales</option>
-          <option value="hazukigrecia">Av.Grecia Hazuki</option>
-          <option value="hazukiquillin">Av.Tobalaba Hazuki </option>
-        </select>
+  </div>
+
+</div>
+
+
+
+<!-- div de google maps personalizado -->
+    <div class="container-fluid b-5" class="border border-secondary">
+      <div class="row align-items-center">
+        <div class="col-sm-4">
+          <div id="findhotels">
+            Ubica Nuestros Locales:
+          </div>
+
+          <div id="controls">
+            <select id="country" class="btn btn-success dropdown-toggle " data-toggle="dropdown" aria-expanded="true" >
+              <option  value="all" class="dropdown-toggle">Selecciona Local Hazuki</option>
+              <option value="hazukigrecia">Av.Grecia #7345 Hazuki</option>
+              <option value="hazukiquillin">Av.Tobalaba #13677 Hazuki </option>
+            </select>
+          </div>
+        </div>
+          <div class="col-8">
+            <div id="mapa" class="m-5">
+              <div id="map" class="border-success">
+
+              </div>
+            </div>
+          </div>
+
       </div>
     </div>
 
-    <div id="map">
-      <div id="mapa">
-
-      </div>
-    </div>
 
     <div id="listing">
       <table id="resultsTable">
@@ -283,7 +297,7 @@
           var fullUrl = place.website;
           var website = hostnameRegexp.exec(place.website);
           if (website === null) {
-            website = 'http://' + place.website + '/';
+            website = 'http://www.hazukisushi.cl' + place.website + '/';
             fullUrl = website;
           }
           document.getElementById('iw-website-row').style.display = '';

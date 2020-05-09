@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     collection do
       get 'clean'
       get 'historial'
+
     end
   end
   get 'payment_success/:billing_code' => 'orders#pay_success', as: 'payment_success'
