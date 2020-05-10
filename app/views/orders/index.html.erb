@@ -1,8 +1,11 @@
-<div class="separator">
-
+<div class="separator m-3">
+  <h2 class="text-white">Tu lista de productos a punto de confirmar</h2>
 </div>
 <div class="container-fluid">
-  <table class="table table-sm">
+  <div class="">
+    <%= link_to 'Revisar Historial', historial_orders_path, class: 'btn btn-success'  %>
+  </div>
+  <table class="table table-sm bg-warning">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Producto</th>
@@ -22,20 +25,20 @@
           <td><%= order.product.orders_count(current_user.id, false) %></td>
           <td><%= number_to_currency(order.product.price, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %> </td>
           <td><%= number_to_currency((order.product.orders_count(current_user.id, false) *  order.product.price), unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %> </td>
-          <td> <%= link_to 'disminuir', order, method: :delete, data: { confirm: 'desea restar un producto?' } %><i class="fa fa-caret-square-down"></i></td>
+          <td> <%= link_to 'disminuir', order, method: :delete, class: "btn btn-success", data: { confirm: 'desea restar un producto?' } %><i class="fa fa-caret-square-down"></i></td>
 
         </tr>
       <% end %>
-      <tr  class="bg bg-danger">
-        <td>total a pagar </td>
+      <tr  class="bg bg-primary">
         <td></td>
         <td></td>
-        <td colspan="3"><%= number_to_currency(@orders.map{|order| (order.product.price * order.product.orders_count(current_user.id, false))}.sum, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %></td>
+        <td><h4 class="font-weight-bold">total a pagar </h4></td>
+        <td colspan="3"><%= number_to_currency(@orders.map{|order| (order.product.price * order.product.orders_count(current_user.id, false))}.sum, class: "font-weight-bold", unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %></td>
 
       </tr>
     </tbody>
   </table>
 
-<%= link_to 'Limpiar carro', clean_orders_path, class: 'btn btn-outline-danger'  %>
-<%= link_to 'Confirmar compra', pre_pay_billings_path, class: 'btn btn-success float-right'  %>
+<%= link_to 'Limpiar carro', clean_orders_path, class: 'btn btn-danger'  %>
+<%= link_to 'Confirmar compra', pre_pay_billings_path, class: 'btn btn-primary float-right'  %>
 </div>

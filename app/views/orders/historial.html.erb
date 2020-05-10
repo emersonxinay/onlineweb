@@ -1,15 +1,15 @@
-<div class="separator">
-
+<div class="separator m-3">
+  <h2 class="text-white">Historial de los pedidos</h2>
 </div>
 <div class="container-fluid">
-  <table class="table table-sm">
+  <table class="table table-sm bg-primary">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Producto</th>
         <th scope="col">cantidad</th>
         <th scope="col">precio por Unidad</th>
         <th scope="col">subtotal</th>
-        <th scope="col"> </th>
+        <th scope="col">Hora y Fecha</th>
 
       </tr>
     </thead>
@@ -28,6 +28,10 @@
 
     </tbody>
   </table>
+    <div class="">
+      <%= link_to 'Ver en PDF', orders_path(@orders, :format => :pdf), class: "btn btn-dark" %>
+
+    </div>
 
 
 </div>

@@ -16,7 +16,14 @@ class OrdersController < ApplicationController
       respond_to do |format|
         format.html
         format.json
-        format.pdf {render template: 'orders/detalle', pdf: 'detalle'}
+        # <--- la sigueinte linea es para ver en pdf --->
+         format.pdf {render template: 'orders/detalle', pdf: 'detalle'}
+        # <--- la sigueinte linea es para descargar en pdf --->
+        # format.pdf do
+        #   render pdf: @order.user_id + " CV",
+        #      disposition: 'attachment'
+        # end
+
       end
       #@orders =Order.where(user: current_user)
       #products_id = Order.select(:id).distinct.pluck(:product_id)

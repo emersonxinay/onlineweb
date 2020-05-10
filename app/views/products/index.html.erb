@@ -1,11 +1,10 @@
-<div class="product">
+<div class="container-fluid">
   <p id="notice"><%= notice %></p>
-
 
   <h1>Productos</h1>
     <%= link_to 'Nuevo Producto', new_product_path, class: "btn btn-primary left" %>
 
-  <table class="table table-responsive-auto table-sm">
+  <table class="table table-sm bg-warning table-fluid">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Name</th>
@@ -22,16 +21,19 @@
         <tr>
 
           <td><%= product.name %></td>
-          <td><%= link_to image_tag(product.photo.url(:thumb)), product if product.photo.present? %></td>
+          <td><%= link_to image_tag(product.photo.url(:thumb), class: "img-fluid"), product if product.photo.present? %></td>
           <td><%= number_to_currency(product.price,  unit: "CLP ", precision: 3, separator: ",", delimiter: ",")%></td>
           <td><%= product.description %></td>
           <td><%= product.category.name %></td>
-          <td><%= link_to 'Ver', product, class: "btn btn-info" %></td>
+          <td><%= link_to 'Ver', product, class: "btn btn-info btn-fluid" %></td>
           <td><%= link_to 'Editar', edit_product_path(product), class: "btn btn-success" %></td>
           <td><%= link_to 'Eliminar', product, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+</div>
+<div class="product">
+
 
 </div>

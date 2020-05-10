@@ -1,32 +1,71 @@
-<div class="m-5">
-  <h2>Sign up</h2>
+<div id="container-registro" class="container">
+  <div class="row">
+    <div class="col col-sm-12 col-md-12 col-lg-6">
+      <div class="d-flex justify-content-center h-100">
+        <div class="card margin-fluid card-registro">
+          <div class="card-header">
+            <h2 class="text-center">Sign up <i class="fa fa-users fa-lg"></i></h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="card-body">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|%>
+                <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                <div class="form-group">
+                  <%= f.label :email , class: "text-success" %>
+                  <div class="col">
+                  <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'ingresa tu email.com' %>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :password, class: "text-success" %>
+                  <div class="col">
+                    <% if @minimum_password_length %>
+                    <em>(<%= @minimum_password_length %> caracteres minimo)</em>
+                    <% end %><br />
+                    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', placeholder: 'ingresa tu contraseña' %>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :password_confirmation , class: "text-success"%><br />
+                  <div class="col">
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', placeholder: 'confirma tu contraseña'  %>
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <div class="col actions">
+                    <%= f.submit "Sign up", :class => 'btn btn-primary'%>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="cd-flex justify-content-center links">
+                    <%= render "devise/shared/links" %>
+                  </div>
+                </div>
+
+              <% end %>
+            </div>
+          </div> <!-- fin de modal-content-->
+        </div>
+      </div>
     </div>
-
-    <div class="field">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
+    <div class="col col-sm-12 col-md-12 col-lg-6">
+      <div class="d-flex justify-content-center h-100">
+        <div class="card margin-fluid card-registro">
+          <div class="card-header">
+            <h2>Registrate para que puedas hacer tu pedido online</h2>
+            <%= image_tag("sliderparallevar.png", :alt => "parallevar.png", class: "d-block w-100") %>
+          </div>
+          <div class="d-flex justify-content-end social_icon">
+            <h5 class="text-center text-primary">siguenos en nuestras redes</h5>
+            <span><i class="fa fa-facebook-square"></i></span>
+            <span><i class="fa fa-google-plus-square"></i></span>
+            <span><i class="fa fa-twitter-square"></i></span>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit "Sign up" %>
-    </div>
-  <% end %>
-
-  <%= render "devise/shared/links" %>
-
+  </div>
 </div>
