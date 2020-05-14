@@ -1,0 +1,47 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+
+      <%= form_for(:product,  url: products_path(:user), local: true) do |form| %>
+      <%# <%= form_with(model: product, local: true) do |form| %>
+
+
+        <div class="field form-group">
+
+          <%= form.label :name %>
+          <%= form.text_field :name, class: "form-control", type: "text", id: "exampleInputEmail1" %>
+        </div>
+
+        <div class="field form-group">
+          <%= form.label :photo  %>
+          <%= form.file_field :photo %>
+        </div>
+
+        <div class="field form-group">
+          <%= form.label :price %>
+          <%= form.text_field :price, class: "form-control", type: "text" %>
+        </div>
+
+        <div class="field form-group">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: "form-control", type: "textarea" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :category_id %>
+          <%= form.collection_select :category_id, Category.order(:name),:id,:name %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit %>
+        </div>
+      <% end %>
+
+        <div class="m-5">
+          <%= link_to 'Ver', @product, class: "btn btn-info" %>
+          <%= link_to 'Atras', products_path, class: "btn btn-danger" %>
+        </div>
+    </div>
+  </div>
+</div>

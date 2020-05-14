@@ -1,12 +1,11 @@
 <div class="container-fluid">
-  <p id="notice"><%= notice %></p>
 
   <h1>Productos</h1>
     <%= link_to 'Nuevo Producto', new_product_path, class: "btn btn-primary left" %>
 
   <table class="table table-sm bg-warning table-fluid">
     <thead class="thead-dark">
-      <tr>
+      <tr class="col col-sm">
         <th scope="col">Name</th>
         <th scope="col">Photo</th>
         <th scope="col">Price</th>
@@ -18,9 +17,9 @@
 
     <tbody >
       <% @products.each do |product| %>
-        <tr>
+        <tr class="col col-sm">
 
-          <td><%= product.name %></td>
+          <td><%= "#{product.name} #{product.created_at}" %></td>
           <td><%= link_to image_tag(product.photo.url(:thumb), class: "img-fluid"), product if product.photo.present? %></td>
           <td><%= number_to_currency(product.price,  unit: "CLP ", precision: 3, separator: ",", delimiter: ",")%></td>
           <td><%= product.description %></td>
@@ -33,7 +32,12 @@
     </tbody>
   </table>
 </div>
-<div class="product">
+<!-- ejemplo de modal para nuevo producto  -->
+<a href="#" data-toggle = "modal" data-target = '#modal-window' class='btn btn-primary btn-lg'> nuevo producto</a>
 
+<div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"><%= render 'newproducto'%> </div>
 
+  </div>
 </div>

@@ -4,10 +4,19 @@ class ProductsController < ApplicationController
 
   # GET /products
   # GET /products.json
-  def index
-
-    @products = Product.all
+#para buscador de productos o search buscanombre lo ubicamos en el modelo de product 
+  def search
+    if params.has_key?(:buscanombre) && params[:buscanombre].length > 0
+      @products = Product.buscanombre(params[:buscanombre])
+    else
+      @products = Product.all
+    end
   end
+
+  def index
+    @products = Product.ultimos
+  end
+
 
   # GET /products/1
   # GET /products/1.json

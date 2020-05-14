@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <p>aqui estara foto de bienvenida </p>
+    </div>
+    <div class="col-10">
+      <p>aqui los formularios de corrreo </p>
+      <%= form_with(model: @contacts) do |cont| %>
+        <%= cont.label "asunto " %>
+        <%= cont.text_field :title,  placeholder: "Escribe Asunto", class:"text-success"%>
+        <%= cont.label "Email " %>
+        <%= cont.email_field :email,  placeholder: "Escribe Email" %>
+        <%= cont.label "Mensaje " %>
+        <%= cont.text_field :description, placeholder: "Escribe Mensaje" %>
+        <%= cont.submit "enviar", class: "btn btn-success" %>
+      <%end%>
+    </div>
+  </div>
+</div>

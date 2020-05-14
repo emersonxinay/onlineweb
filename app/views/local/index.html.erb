@@ -1,39 +1,29 @@
-<div class="container-fluid">
 
-</div>
-<div class="container">
-  <div class="row">
-
-
-  </div>
-
-</div>
-
-
-
-<!-- div de google maps personalizado -->
+<!-- div de google maps personalizado al local -->
     <div class="container-fluid b-5" class="border border-secondary">
       <div class="row align-items-center">
-        <div class="col-sm-4">
-          <div id="findhotels">
-            Ubica Nuestros Locales:
+        <div class=" col-sm-4">
+          <div id="findhotels" class="text-danger">
+            <h2>Ubica Nuestros Locales en Peñalolen:</h2>
           </div>
 
           <div id="controls">
-            <select id="country" class="btn btn-success dropdown-toggle " data-toggle="dropdown" aria-expanded="true" >
+            <select id="country" class="btn btn-danger dropdown-toggle " data-toggle="dropdown" aria-expanded="true" >
               <option  value="all" class="dropdown-toggle">Selecciona Local Hazuki</option>
               <option value="hazukigrecia">Av.Grecia #7345 Hazuki</option>
               <option value="hazukiquillin">Av.Tobalaba #13677 Hazuki </option>
             </select>
           </div>
         </div>
-          <div class="col-8">
-            <div id="mapa" class="m-5">
-              <div id="map" class="border-success">
+        <!-- en este div es donde se muestra el map  -->
+          <div class=" col-sm-8">
+            <div id="mapa" class="">
+              <div id="map" class="mr-10">
 
               </div>
             </div>
           </div>
+          <!-- fin del div del map  -->
 
       </div>
     </div>
@@ -45,7 +35,7 @@
       </table>
     </div>
 
-    <div style="display: none">
+    <!-- <div>
       <div id="info-content">
         <table>
           <tr id="iw-url-row" class="iw_table_row">
@@ -70,7 +60,7 @@
           </tr>
         </table>
       </div>
-    </div>
+    </div> -->
 
     <script>
       // This example uses the autocomplete feature of the Google Places API.
@@ -309,3 +299,5 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnIVHg4js6sWAGuUtfykRGSwNPrgDw-ho&libraries=places&callback=initMap"
         async defer></script>
+
+    <!-- otro ejemplo de maps  -->

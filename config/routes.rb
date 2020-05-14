@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :state_orders
+  get "products/search"
   resources :products
+
   resources :billings, only: [] do
     collection do
       get 'pre_pay'
@@ -21,11 +23,16 @@ Rails.application.routes.draw do
   resources :orders
   resources :categories
   resources :home
+
   resources :carta
   resources :preguntas
   resources :local
+  resources :user_mailer
+  resources :contacts, only: [:create, :new]
+  # match 'search(/:search)', :to => 'products#search', :as => :search, via: [:get, :post]
+  post 'contact/new'
+  get 'welcome/contacto'
   root to: "home#index"
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -22,7 +22,7 @@
           <td><%= order.product.orders_count(current_user.id, true) %></td>
           <td><%= number_to_currency(order.product.price, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %> </td>
           <td><%= number_to_currency((order.product.orders_count(current_user.id, true) *  order.product.price), unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %> </td>
-          <td><%= order.updated_at %></td>
+          <td><%= order.updated_at.strftime("%d, de %b, del  %Y, a las %H:%M") %></td>
         </tr>
       <% end %>
 
