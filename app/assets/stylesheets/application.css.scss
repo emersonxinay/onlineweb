@@ -15,17 +15,25 @@
  */
     @import "bootstrap";
     @import "font-awesome";
-
     html, body {
-      /* background-image: image-url('sushisgv.svg');*/
-      background-color: #fff;
-      height: 100%;
-      margin: 5;
-      padding: 5;
-      position: relative;
-      min-height: 100%;
+      font-family: sans-serif;
     }
-
+    body {
+        /* Ubicación de la imagen */
+        background-image: image-url('jaleamixtaweb.png');
+        /* Para dejar la imagen de fondo centrada, vertical y
+        horizontalmente */
+        background-position: center center;
+        /* Para que la imagen de fondo no se repita */
+        background-repeat: no-repeat;
+        /* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
+        background-attachment: fixed;
+        /* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
+        background-size: cover;
+        /* Se muestra un color de fondo mientras se está cargando la imagen
+        de fondo o si hay problemas para cargarla */
+        background-color: #003;
+        }
     .text-nav{
       color: white !important;
       font-size: 170%;
@@ -36,11 +44,9 @@
       /* Set the fixed height of the footer here */
       height: auto;
       width: 100%;
-
     }
     .espaciofooter {
       height: 300px;
-
     }
     .product{
       margin-left: 20px;
@@ -67,12 +73,8 @@
 #country {
        width: 100%;
      }
-/* Optional: Makes the sample page fill the window. */
-
 // :::::::::: fin de css  de google maps ::::::::::::::::::::: //
-
 /* :::::: carousel para poner el texto encima de la imagen slider :::::::::::::: */
-
 .carousel-content {
      position: absolute;
      bottom: 10%;
@@ -80,7 +82,6 @@
      z-index: 20;
      color: white;
      text-shadow: 0 1px 2px rgba(0,0,0,.6);
-
 }
 #fondotexto {
   background-color: rgb(0, 0, 0); /* o background-color:#000000; */
@@ -100,17 +101,13 @@
   object-fit: cover;
   width: 100%;
 }
-
 /* tamaño de pantalla con jquery */
-
 @media (min-width: 768px){
   #carouselinicio{
     clear: inherit;
   }
 }
-
 /* ::::::::::: css de sign up o regsitrar usuario de devise ::::::::::::: */
-
 @import url('https://fonts.googleapis.com/css?family=Numans');
 //
 // html,body{
@@ -121,69 +118,52 @@
 // font-family: 'Numans', sans-serif;
 // }
 #body-registro{
-   background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
-
+   // background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
    height: auto;
 }
-
 .container{
 height: 100%;
 align-content: center;
-
 }
-
-
 .card{
 height: auto;
 margin-top: 20%;
 margin-bottom: 20%;
 width: auto;
-
-
 }
 .card-registro{
   background-color: rgba(18, 32, 43, 1) !important;
 }
-
 .social_icon span{
 font-size: 60px;
 margin-left: 10px;
 color: white;
 }
-
 .social_icon span:hover{
 color: blue;
 cursor: pointer;
 }
-
 .card-header h2{
 color: white;
 }
-
-
 // .social_icon{
 // position: absolute;
 // right: 20px;
 // // top: -45px;
 // }
-
 .input-group-prepend span{
 width: 50px;
 background-color: #FFC312;
 color: black;
 border:0 !important;
 }
-
 input:focus{
 outline: 0 0 0 0  !important;
 box-shadow: 0 0 0 0 !important;
-
 }
-
 .remember{
 color: white;
 }
-
 .remember input
 {
 width: 20px;
@@ -191,22 +171,32 @@ height: 20px;
 margin-left: 15px;
 margin-right: 5px;
 }
-
 .login_btn{
 color: black;
 background-color: #FFC312;
 width: 100px;
 }
-
 .login_btn:hover{
 color: black;
 background-color: white;
 }
-
 .links{
 color: white;
 }
-
 .links a{
 margin-left: 4px;
+}
+// css de la pagina de inicio de los card
+.card-home-index {
+  height: 500px;
+  background-color: #ff0;
+  backface-visibility: hidden;
+  border-color: rgb(0, 0, 3);
+  background-color: rgb(0, 4, 0); /* o background-color:#000000; */
+  opacity: 0.9;
+  color: #000;
+
+}
+.card-body-text{
+
 }

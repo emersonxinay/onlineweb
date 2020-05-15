@@ -15,12 +15,12 @@
                   </ul>
               </div>
             <%end %>
-                <%= cont.label "asunto " %>
-                <%= cont.text_field :title,  placeholder: "Escribe Asunto", class:" form-control text-primary"%>
-                <%= cont.label "Email " %>
+                <h5><%= cont.label "asunto " %></h5>
+                <%= cont.text_field :title,  placeholder: "Escribe Asunto minimo 5 caracteres", class:" form-control text-primary"%>
+                <h5><%= cont.label "Email " %></h5>
                 <%= cont.email_field :email,  placeholder: "Escribe Email", class: "form-control text-primary" %>
-                <%= cont.label "Mensaje " %>
-                <%= cont.text_field :description, placeholder: "Escribe Mensaje", class: "form-control text-primary" %>
+                <h5><%= cont.label "Mensaje " %></h5>
+                <%= cont.text_field :description, placeholder: "Escribe Mensaje minimo 20 caracteres", class: "form-control text-primary" %>
                 <%= cont.submit "enviar", class: "btn btn-success" %>
       <%end%>
     </div>

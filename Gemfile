@@ -46,6 +46,7 @@ gem 'rails-erd', group: :development
 gem 'paypal-sdk-rest'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'rails-i18n'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

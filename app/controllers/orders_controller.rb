@@ -2,9 +2,7 @@ class OrdersController < ApplicationController
     before_action :authenticate_user!
     before_action :set_order, only: [ :destroy]
 
-
     def create
-
       params[:products].each do |product_id|
         Order.create(:user => current_user, :product => Product.find(product_id), :state_order_id => 1, :delivery_date => Date.today, :payed => false )
         end
@@ -33,15 +31,15 @@ class OrdersController < ApplicationController
         orders_id.push( Product.find(pp).orders.where(user: current_user).last.id )
       end
       @orders = Order.where(user: current_user).where(id: orders_id).where(payed: false)
-
     end
-    def detalle
 
+    def detalle
+      products_id = current_user.orders.select(:id).distinct.pluck(:product_id)
+      @orders = Order.where(user: current_user).where(payed: true)
     end
 
     def historial
       products_id = current_user.orders.select(:id).distinct.pluck(:product_id)
-
       @orders = Order.where(user: current_user).where(payed: true)
     end
 
@@ -57,7 +55,6 @@ class OrdersController < ApplicationController
     end
     def pay_success
       @billing = Billing.where(code: params[:billing_code]).first
-
       render "pay/success"
     end
 

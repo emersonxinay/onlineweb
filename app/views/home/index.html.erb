@@ -13,15 +13,15 @@
     <% @products.each_slice(4) do |row| %>
     <% row.each do |product| %>
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="card">
+      <div class="card card-home-index">
           <%= link_to image_tag(product.photo.url(:thumb), :class=> "card-img-top img-responsive center-block  rounded-left"), product if product.photo.present? %>
-          <div class="card-body">
-            <h5 class="card-title"> <%= product.name %></h5>
-            <p class="card-text"><%= product.description %></p>
+          <div class="card-body card-body-text">
+            <h5 class="card-title text-primary"> <%= product.name %></h5>
+            <p class="card-text text-info"><%= product.description %></p>
           </div>
 
-          <div class="card-body">
-            <h3 class="card-text"><%= number_to_currency(product.price, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %></h3>
+          <div class="card-body card-body-text">
+            <h3 class="card-price text-white"><%= number_to_currency(product.price, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %></h3>
               <input type="checkbox"  class="custom-checkbox" name="products[]" value="<%= product.id %>">
               <label class="text-primary">Selecciona</label>
           </div>

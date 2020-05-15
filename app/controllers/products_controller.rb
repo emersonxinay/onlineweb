@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   # GET /products
   # GET /products.json
-#para buscador de productos o search buscanombre lo ubicamos en el modelo de product 
+#para buscador de productos o search buscanombre lo ubicamos en el modelo de product
   def search
     if params.has_key?(:buscanombre) && params[:buscanombre].length > 0
       @products = Product.buscanombre(params[:buscanombre])
@@ -41,9 +41,11 @@ class ProductsController < ApplicationController
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

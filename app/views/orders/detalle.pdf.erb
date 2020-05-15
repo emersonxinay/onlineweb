@@ -3,12 +3,13 @@
   <head>
     <%= wicked_pdf_stylesheet_link_tag 'pdf' %>
     <meta charset="utf-8">
-    <title></title>
+    <title>detalle</title>
   </head>
   <body>
     <div class="container-fluid">
       <h1>Hazuki Online</h1>
-      <h2>hola <%=current_user.name %></h2>
+      <h2>Hola <%=current_user.name %></h2>
+      <h2><%= current_user.email %></h2>
       <h2>Detalle de Compras confirmadas</h2>
       <table class="table table-sm danger">
         <thead class="thead-dark">
@@ -21,11 +22,9 @@
 
           </tr>
         </thead>
-
         <tbody >
           <% @orders.each do |order| %>
             <tr>
-
               <td><%= order.product.name %></td>
               <td><%= order.product.orders_count(current_user.id, true) %></td>
               <td><%= number_to_currency(order.product.price, unit: "CLP", separator: ",", delimiter: ",", format: "%n %u", precision: 0) %> </td>
@@ -33,12 +32,8 @@
               <td><%= order.updated_at.strftime("%d, de %b, del  %Y, a las %H:%M") %></td>
             </tr>
           <% end %>
-
         </tbody>
       </table>
-
     </div>
-
-
   </body>
 </html>

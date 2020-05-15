@@ -19,7 +19,7 @@
       <% @products.each do |product| %>
         <tr class="col col-sm">
 
-          <td><%= "#{product.name} #{product.created_at}" %></td>
+          <td><%= "#{product.name} #{product.created_at.strftime("%d, de %b")}" %></td>
           <td><%= link_to image_tag(product.photo.url(:thumb), class: "img-fluid"), product if product.photo.present? %></td>
           <td><%= number_to_currency(product.price,  unit: "CLP ", precision: 3, separator: ",", delimiter: ",")%></td>
           <td><%= product.description %></td>
