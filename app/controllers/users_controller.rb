@@ -12,7 +12,9 @@ class UsersController < ApplicationController
   def show
 
   end
+  def new
 
+  end
   # GET /users/1/edit
   def edit
 

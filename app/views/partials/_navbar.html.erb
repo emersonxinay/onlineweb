@@ -23,11 +23,12 @@
       </li>
 
       <% if user_signed_in? %>
-      <!-- <li class="nav-item ">
+       <!-- <li class="nav-item ">
           <a class="nav-link" href="<%= categories_path %>">Categoria y Productos</a></li> -->
       <li class="nav-item">
         <a class="nav-link " href="<%= products_path %>">Productos</a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" href="<%= orders_path %>">Mi Carro <i class="fa fa-shopping-cart fa-lg fa-success" ></i></a>
       </li>
@@ -44,8 +45,8 @@
       <% else %>
     <ul class="navbar-nav xl-auto ml-auto">
 
-          <li class="nav-item"> <a class="nav-link" href="<%= new_user_session_path %>">Iniciar</a> </li>
-          <li class="nav-item"> <a class="nav-link" href="<%= new_user_registration_path %>"> Registrarse </a> </li>
+          <li class="nav-item"> <a class="nav-link" href="<%= new_user_session_path %>">Iniciar <i class="fa fa-sign-in"></i></a> </li>
+          <li class="nav-item"> <a class="nav-link" href="<%= new_user_registration_path %>"> Registrarse <i class="fa fa-user-plus"></i></a> </li>
 
        <% end %>
     </ul>
