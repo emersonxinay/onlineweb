@@ -8,6 +8,7 @@ Things you may want to cover:
   * rake db:create 
   * rake db:migrate
   * rake assets:precompile
+  * rails s 
   
 
 * Ruby version
