@@ -6,7 +6,7 @@ ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 # -----aqui vamos a poner los gem de development y production-----
-gem 'pg', '>= 0.18', '< 2.0'
+
 group :development do
 
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -17,7 +17,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 group :production do
-    gem 'pg', '>= 0.18', '< 2.0'
+    
+    gem 'pg'
+    gem 'rails_12factor'
 
 end
 # -----fin de gem development y production -----
