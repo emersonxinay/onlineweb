@@ -1,7 +1,9 @@
 class ContactsController < ApplicationController
+  before_action :set_contact, only: [:new, :create, :title, :description, :email]
   def new
     @contact = Contact.new
   end
+  
 
   def create
     @contact = Contact.new(contacts_params)

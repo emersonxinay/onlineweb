@@ -1,28 +1,3 @@
-<div class="container my-5">
-  <div class="row">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-3 text-center ">
-      <h2>contactanos y escribenos</h2>
-    </div>
-    <div class="col-12 col-sm-12 col-md-12 col-lg-9">
-      <%= form_with(model: @contact, local:true) do |cont| %>
-            <% if @contact.errors.any? %>
-              <div class="">
-                <h2> <%=pluralize(@contact.errors.count, "error") %> prohibido la categoria </h2>
-                  <ul>
-                    <%= @contact.errors.full_messages.each do |message|%>
-                      <li><%= message %></li>
-                    <%end %>
-                  </ul>
-              </div>
-            <%end %>
-                <h5><%= cont.label "asunto " %></h5>
-                <%= cont.text_field :title,  placeholder: "Escribe Asunto minimo 5 caracteres", class:" form-control text-primary"%>
-                <h5><%= cont.label "Email " %></h5>
-                <%= cont.email_field :email,  placeholder: "Escribe Email", class: "form-control text-primary" %>
-                <h5><%= cont.label "Mensaje " %></h5>
-                <%= cont.text_field :description, placeholder: "Escribe Mensaje minimo 20 caracteres", class: "form-control text-primary" %>
-                <%= cont.submit "enviar", class: "btn btn-success" %>
-      <%end%>
-    </div>
-  </div>
+<div>
+  <h1>hola contactos </h1>
 </div>
