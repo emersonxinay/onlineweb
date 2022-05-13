@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_205024) do
+ActiveRecord::Schema.define(version: 2022_05_13_054811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2020_05_05_205024) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role", default: "read", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
@@ -58,19 +59,12 @@ ActiveRecord::Schema.define(version: 2020_05_05_205024) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.boolean "payed", default: false
-    t.bigint "user_id"
-    t.bigint "product_id"
-    t.bigint "state_order_id"
-    t.datetime "delivery_date"
+  create_table "contacts", force: :cascade do |t|
+    t.string "title"
+    t.string "email"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "billing_id"
-    t.index ["billing_id"], name: "index_orders_on_billing_id"
-    t.index ["product_id"], name: "index_orders_on_product_id"
-    t.index ["state_order_id"], name: "index_orders_on_state_order_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -114,6 +108,9 @@ ActiveRecord::Schema.define(version: 2020_05_05_205024) do
     t.string "uid"
     t.string "name"
     t.text "image"
+    t.boolean "superadmin_role", default: false
+    t.boolean "supervisor_role", default: false
+    t.boolean "user_role", default: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -121,9 +118,5 @@ ActiveRecord::Schema.define(version: 2020_05_05_205024) do
   end
 
   add_foreign_key "billings", "users"
-  add_foreign_key "orders", "billings"
-  add_foreign_key "orders", "products"
-  add_foreign_key "orders", "state_orders"
-  add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
 end

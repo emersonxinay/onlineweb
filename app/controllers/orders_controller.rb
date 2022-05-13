@@ -15,16 +15,16 @@ class OrdersController < ApplicationController
         format.html
         format.json
         # <--- la sigueinte linea es para ver en pdf --->
-         format.pdf {render template: 'orders/detalle', pdf: 'detalle'}
+        format.pdf {render template: 'orders/detalle', pdf: 'detalle'}
         # <--- la sigueinte linea es para descargar en pdf --->
-        # format.pdf do
-        #   render pdf: @order.user_id + " CV",
-        #      disposition: 'attachment'
-        # end
+        format.pdf do
+          render pdf: @order.user_id + " CV",
+            disposition: 'attachment'
+        end
 
       end
-      #@orders =Order.where(user: current_user)
-      #products_id = Order.select(:id).distinct.pluck(:product_id)
+      @orders =Order.where(user: current_user)
+      products_id = Order.select(:id).distinct.pluck(:product_id)
       products_id = current_user.orders.select(:id).distinct.pluck(:product_id)
       orders_id = []
       products_id.each do |pp|
